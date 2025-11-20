@@ -99,6 +99,10 @@ ping 2001:db8:1:2::10
 │── RIGHTRCLI.png  # Router2 CLI output
 │── proof.png      # Ping test results
 ```
+![Command](assets/LEFTRCLI.png)
+![Command](assets/MIDRCLI.png)
+![Command](assets/RIGHTRCLI.png)
+
 
 ---
 
@@ -153,8 +157,8 @@ ipv6 route 2001:db8:1:2::/64 2001:db8:3:2::1
 !
 end
 write
---
-
+---
+---
 ## ROUTER 2 (RIGHT)
 ! ===== Interface Config =====
 
@@ -180,4 +184,4 @@ ipv6 route 2001:db8:3:1::/64 2001:db8:3:2::2
 !
 end
 write
-
+---
