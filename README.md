@@ -105,7 +105,7 @@ ping 2001:db8:1:2::10
 
 
 ---
-
+```
 ## ROUTER1 (LEFT)
 ! ===== Interface Config =====
 
@@ -185,3 +185,4 @@ ipv6 route 2001:db8:3:1::/64 2001:db8:3:2::2
 end
 write
 ---
+```
