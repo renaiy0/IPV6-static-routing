@@ -102,4 +102,82 @@ ping 2001:db8:1:2::10
 
 ---
 
+## ROUTER1 (LEFT)
+! ===== Interface Config =====
+
+conf t
+!
+interface GigabitEthernet0/0
+ ipv6 enable
+ ipv6 address 2001:db8:3:1::1/64
+ ipv6 address fe80::1 link-local
+ no shutdown
+!
+interface GigabitEthernet0/1
+ ipv6 enable
+ ipv6 address 2001:db8:1:1::1/64
+ ipv6 address fe80::1 link-local
+ no shutdown
+!
+exit
+
+! ===== Static Routes =====
+ipv6 route 2001:db8:1:2::/64 2001:db8:3:1::2
+ipv6 route 2001:db8:3:2::/64 2001:db8:3:1::2
+!
+end
+write
+---
+## ROUTER 0 (MID)
+! ===== Interface Config =====
+
+conf t
+!
+interface GigabitEthernet0/0
+ ipv6 enable
+ ipv6 address 2001:db8:3:1::2/64
+ ipv6 address fe80::2 link-local
+ no shutdown
+!
+interface GigabitEthernet0/1
+ ipv6 enable
+ ipv6 address 2001:db8:3:2::2/64
+ ipv6 address fe80::2 link-local
+ no shutdown
+!
+exit
+
+! ===== Static Routes =====
+ipv6 route 2001:db8:1:1::/64 2001:db8:3:1::1
+ipv6 route 2001:db8:1:2::/64 2001:db8:3:2::1
+!
+end
+write
+--
+
+## ROUTER 2 (RIGHT)
+! ===== Interface Config =====
+
+conf t
+!
+interface GigabitEthernet0/0
+ ipv6 enable
+ ipv6 address 2001:db8:3:2::1/64
+ ipv6 address fe80::3 link-local
+ no shutdown
+!
+interface GigabitEthernet0/1
+ ipv6 enable
+ ipv6 address 2001:db8:1:2::1/64
+ ipv6 address fe80::3 link-local
+ no shutdown
+!
+exit
+
+! ===== Static Routes =====
+ipv6 route 2001:db8:1:1::/64 2001:db8:3:2::2
+ipv6 route 2001:db8:3:1::/64 2001:db8:3:2::2
+!
+end
+write
 
